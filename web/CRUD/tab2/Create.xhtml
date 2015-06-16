@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Tab2CreateDlg" widgetVar="Tab2CreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTab2Title}">
+            <h:form id="Tab2CreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tab2Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTab2Label_idd}" for="idd" />
+                        <p:inputText id="idd" value="#{tab2Controller.selected.idd}" title="#{bundle.CreateTab2Title_idd}" required="true" requiredMessage="#{bundle.CreateTab2RequiredMessage_idd}"/>
+                        <p:outputLabel value="#{bundle.CreateTab2Label_nombree}" for="nombree" />
+                        <p:inputText id="nombree" value="#{tab2Controller.selected.nombree}" title="#{bundle.CreateTab2Title_nombree}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tab2Controller.create}" value="#{bundle.Save}" update="display,:Tab2ListForm:datalist,:growl" oncomplete="handleSubmit(args,'Tab2CreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="Tab2CreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
